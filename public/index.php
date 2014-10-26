@@ -31,13 +31,20 @@
         margin: 0px;
     }
 
+    .box-header {
+        margin: 0px auto;
+        width: 600px;
+    }
+
 
 </style>
 
 </head>
 <body>
 
-<div class="page-header"></div>
+<div class="page-header box-header">
+    <h2>Whack Away!</h2>
+</div>
 
 <div class="main-box">
 
