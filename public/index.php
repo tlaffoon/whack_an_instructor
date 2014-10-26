@@ -1,6 +1,7 @@
 <html>
 <head>
     <title>Whack A Coder</title>
+<!-- <link rel="stylesheet" type="text/css" href="/includes/bootstrap/css/bootstrap.css"> -->
 <style type="text/css">
 
     .main-box {
@@ -11,13 +12,20 @@
     }
 
     .lil-box {
-        border: dotted black 1px;
+        border: solid black 1px;
         height: 198px;
         width: 198px;
+        /*background-image: url('/includes/img/gc_face.png');*/
+        /*display: none;*/
         float: left;
-        background-image: url('/img/gc_face.png');
-        display: none;
     }
+
+    .mole {
+        display: none;
+        height: 100%;
+        width: 100%;
+    }
+
 
 </style>
 
@@ -25,19 +33,47 @@
 <body>
 
 <div class="main-box">
-    <div class="lil-box" id="1"></div>
-    <div class="lil-box" id="2"></div>
-    <div class="lil-box" id="3"></div>
-    <div class="lil-box" id="4"></div>
-    <div class="lil-box" id="5"></div>
-    <div class="lil-box" id="6"></div>
-    <div class="lil-box" id="7"></div>
-    <div class="lil-box" id="8"></div>
-    <div class="lil-box" id="9"></div>
+
+    <div class="row no-padding">
+        <div id="1" class="lil-box">
+            <img class="mole" src="/includes/img/gc_face.png">
+        </div>
+        <div id="2" class="lil-box">
+            <img class="mole" src="/includes/img/gc_face.png">
+        </div>
+        <div id="3" class="lil-box">
+            <img class="mole" src="/includes/img/gc_face.png">
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="4" class="lil-box">
+            <img class="mole" src="/includes/img/gc_face.png">
+        </div>
+        <div id="5" class="lil-box">
+            <img class="mole" src="/includes/img/gc_face.png">
+        </div>
+        <div id="6" class="lil-box">
+            <img class="mole" src="/includes/img/gc_face.png">
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="7" class="lil-box">
+            <img class="mole" src="/includes/img/gc_face.png">
+        </div>
+        <div id="8" class="lil-box">
+            <img class="mole" src="/includes/img/gc_face.png">
+        </div>
+        <div id="9" class="lil-box">
+            <img class="mole" src="/includes/img/gc_face.png">
+        </div>
+    </div>
+
 </div>
 
 </body>
-<script src="/js/jquery-2.1.1.min.js"></script>
+<script src="/includes/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
 
     function genRand() {
@@ -46,10 +82,25 @@
     }
 
     function runGame() {
+        // Fade out all moles
+        $('.mole').fadeOut();
+        
+        // Get random integer
         var randNum = genRand();
         // console.log(randNum);
 
+        // Get random box from moles array
+        var randBox = moles[randNum - 1];
+        // console.log(randBox);
+
+        // Fade in random box
+        $(randBox).fadeIn(200);
+
     }
+
+    // Define array of boxes
+    var moles = $('.mole');
+    // console.log(array);
 
     // Start An Interval @ 1 second
     var game = setInterval(runGame, 1000);
