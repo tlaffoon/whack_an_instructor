@@ -46,59 +46,74 @@
         width: 600px;
     }
 
+    .timer {
+        font-size: 50px;
+        color: red;
+
+        position: absolute;
+        top: 85px;
+        right: 50px;
+        display:none;
+    }
+
 </style>
 
 </head>
 <body>
 
-<div class="page-header box-header">
-    <h2>Whack Away!</h2>
-</div>
+<div class="container">
 
-<div class="main-box">
+    <div id="timer" class="timer">TEST</div>
 
-    <div class="row no-pad">
-        <div id="1" class="lil-box">
-            <img class="mole" src="/includes/img/gc_face.png">
-        </div>
-        <div id="2" class="lil-box">
-            <img class="mole" src="/includes/img/gc_face.png">
-        </div>
-        <div id="3" class="lil-box">
-            <img class="mole" src="/includes/img/gc_face.png">
-        </div>
-    </div> <!-- End Row -->
+    <div class="page-header box-header">
+        <h2>Whack Away!</h2>
+    </div>
 
-    <div class="row no-pad">
-        <div id="4" class="lil-box">
-            <img class="mole" src="/includes/img/gc_face.png">
-        </div>
-        <div id="5" class="lil-box">
-            <img class="mole" src="/includes/img/gc_face.png">
-        </div>
-        <div id="6" class="lil-box">
-            <img class="mole" src="/includes/img/gc_face.png">
-        </div>
-    </div> <!-- End Row -->
+    <div class="main-box">
 
-    <div class="row no-pad">
-        <div id="7" class="lil-box">
-            <img class="mole" src="/includes/img/gc_face.png">
-        </div>
-        <div id="8" class="lil-box">
-            <img class="mole" src="/includes/img/gc_face.png">
-        </div>
-        <div id="9" class="lil-box">
-            <img class="mole" src="/includes/img/gc_face.png">
-        </div>
-    </div> <!-- End Row -->
+        <div class="row no-pad">
+            <div id="1" class="lil-box">
+                <img class="mole" src="/includes/img/gc_face.png">
+            </div>
+            <div id="2" class="lil-box">
+                <img class="mole" src="/includes/img/gc_face.png">
+            </div>
+            <div id="3" class="lil-box">
+                <img class="mole" src="/includes/img/gc_face.png">
+            </div>
+        </div> <!-- End Row -->
 
-</div> <!-- End Main Container -->
+        <div class="row no-pad">
+            <div id="4" class="lil-box">
+                <img class="mole" src="/includes/img/gc_face.png">
+            </div>
+            <div id="5" class="lil-box">
+                <img class="mole" src="/includes/img/gc_face.png">
+            </div>
+            <div id="6" class="lil-box">
+                <img class="mole" src="/includes/img/gc_face.png">
+            </div>
+        </div> <!-- End Row -->
 
-<div class="buttons">
-    <button id="start-btn" class="btn btn-lg btn-success pull-right"> START </button>
-    <button id="reset-btn" class="btn btn-lg btn-warning pull-left"> RESET </button>
-</div>
+        <div class="row no-pad">
+            <div id="7" class="lil-box">
+                <img class="mole" src="/includes/img/gc_face.png">
+            </div>
+            <div id="8" class="lil-box">
+                <img class="mole" src="/includes/img/gc_face.png">
+            </div>
+            <div id="9" class="lil-box">
+                <img class="mole" src="/includes/img/gc_face.png">
+            </div>
+        </div> <!-- End Row -->
+
+    </div> <!-- End Main Container -->
+
+    <div class="buttons">
+        <button id="start-btn" class="btn btn-lg btn-success pull-right"> START </button>
+        <button id="reset-btn" class="btn btn-lg btn-warning pull-left"> RESET </button>
+    </div>
+</div> <!-- End Container -->
 
 </body>
 <script src="/includes/js/jquery-2.1.1.min.js"></script>
@@ -115,6 +130,12 @@
         
         clearInterval(game);
 
+        var time = 60;
+        var timer = $('#timer');
+        timer.html(time);
+        timer.fadeIn();
+
+
         game = setInterval(function () {
             // Fade out all moles
             $('.mole').fadeOut();
@@ -129,19 +150,38 @@
 
             // Fade in random box
             $(randBox).fadeIn(200);
+
+            time--;
+            timer.html(time);
+
+            if (time == 0) {
+                stopGame();
+            };
+
         }, 1000);
     }
 
-    // function stopGame() {
-    //     clearInterval
-    // }
+    function resetGame() {
+        // Run a new game
+        runGame();
+    }
+
+    function stopGame() {
+        clearInterval(game);
+        // Flash Game Over.
+    }
 
     // Define array of boxes
     var moles = $('.mole');
     // console.log(array);
 
+    // Adds event listener to start button
     var start = document.getElementById('start-btn');
     start.addEventListener('click', runGame, false);
+
+    // Honestly; not even necessary.
+    var reset = document.getElementById('reset-btn');
+    reset.addEventListener('click', resetGame, false);
 
     // Start An Interval @ 1 second
     // var game = setInterval(runGame, 1000);
