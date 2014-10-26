@@ -88,37 +88,37 @@
 
         <div class="row no-pad">
             <div id="1" class="lil-box">
-                <img class="mole" src="/includes/img/gc_face.png">
+                <img class="mole" src="/includes/img/chris.jpg">
             </div>
             <div id="2" class="lil-box">
-                <img class="mole" src="/includes/img/gc_face.png">
+                <img class="mole" src="/includes/img/mike.jpg">
             </div>
             <div id="3" class="lil-box">
-                <img class="mole" src="/includes/img/gc_face.png">
+                <img class="mole" src="/includes/img/jason.jpg">
             </div>
         </div> <!-- End Row -->
 
         <div class="row no-pad">
             <div id="4" class="lil-box">
-                <img class="mole" src="/includes/img/gc_face.png">
+                <img class="mole" src="/includes/img/jenni.jpg">
             </div>
             <div id="5" class="lil-box">
                 <img class="mole" src="/includes/img/gc_face.png">
             </div>
             <div id="6" class="lil-box">
-                <img class="mole" src="/includes/img/gc_face.png">
+                <img class="mole" src="/includes/img/ben.jpg">
             </div>
         </div> <!-- End Row -->
 
         <div class="row no-pad">
             <div id="7" class="lil-box">
-                <img class="mole" src="/includes/img/gc_face.png">
+                <img class="mole" src="/includes/img/greg.jpg">
             </div>
             <div id="8" class="lil-box">
-                <img class="mole" src="/includes/img/gc_face.png">
+                <img class="mole" src="/includes/img/isaac.jpg">
             </div>
             <div id="9" class="lil-box">
-                <img class="mole" src="/includes/img/gc_face.png">
+                <img class="mole" src="/includes/img/ryan.jpg">
             </div>
         </div> <!-- End Row -->
 
@@ -126,7 +126,7 @@
 
     <div class="buttons">
         <button id="start-btn" class="btn btn-lg btn-success pull-right"> START </button>
-        <button id="reset-btn" class="btn btn-lg btn-danger pull-left"> STOP </button>
+        <button id="stop-btn" class="btn btn-lg btn-danger pull-left"> STOP </button>
     </div>
 </div> <!-- End Container -->
 
@@ -168,6 +168,9 @@
             // Fade out all moles
             moles.fadeOut();
             
+            // Remove all event listeners
+            moles.off();
+
             // Get random integer
             var randNum = genRand();
 
@@ -177,6 +180,7 @@
             // Fade in random box
             $(randBox).fadeIn(200);
 
+            // Run function on click; add points/fadeOut
             $(randBox).click(function() {
                 score += 10;
                 scorebox.html(score);
@@ -185,9 +189,11 @@
                 $(this).off();
             });
 
+            // Decrement timer and update html
             time--;
             timer.html(time);
 
+            // Stop Game on timer zero
             if (time <= 0) {
                 stopGame();
             };
@@ -196,15 +202,9 @@
     }
 
     function stopGame() {
+        clearInterval(game);        
         moles.fadeOut(1000);
         timer.fadeOut(1000);
-        // scorebox.fadeOut(1000);
-        
-        // lils.fadeOut(1000);
-        // main.html('<h1 class="center"> GAME OVER </h1>');
-
-        clearInterval(game);
-        // Flash Game Over.
     }
 
     // Adds event listener to start button
@@ -212,8 +212,8 @@
     start.addEventListener('click', runGame, false);
 
     // Honestly; not even necessary.
-    var reset = document.getElementById('reset-btn');
-    reset.addEventListener('click', stopGame, false);
+    var stop = document.getElementById('stop-btn');
+    stop.addEventListener('click', stopGame, false);
 
 
     // fade in each random box
