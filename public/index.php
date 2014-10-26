@@ -46,7 +46,7 @@
         width: 600px;
     }
 
-    .timer {
+    #timer {
         font-size: 50px;
         color: red;
 
@@ -54,6 +54,16 @@
         top: 85px;
         right: 50px;
         display:none;
+    }
+
+    #scorebox {
+       font-size: 50px;
+       color: purple;
+
+       position: absolute;
+       top: 85px;
+       left: 50px;
+       display:none; 
     }
 
     .center {
@@ -66,8 +76,9 @@
 <body>
 
 <div class="container">
-
-    <div id="timer" class="timer">TEST</div>
+    
+    <div id="scorebox"></div>
+    <div id="timer"></div>
 
     <div class="page-header box-header">
         <h2>Whack Away!</h2>
@@ -115,7 +126,7 @@
 
     <div class="buttons">
         <button id="start-btn" class="btn btn-lg btn-success pull-right"> START </button>
-        <button id="reset-btn" class="btn btn-lg btn-warning pull-left"> RESET </button>
+        <button id="reset-btn" class="btn btn-lg btn-danger pull-left"> STOP </button>
     </div>
 </div> <!-- End Container -->
 
@@ -135,6 +146,7 @@
     var lils = $('.lil-box');
 
 
+    // Define functions
     function genRand() {
         // Generate Random Number b/w 1-9
         return Math.floor(Math.random() * 9) + 1;
@@ -144,6 +156,7 @@
         
         clearInterval(game);
 
+        score = 0;
         scorebox.html(score);
         scorebox.fadeIn();
 
@@ -157,14 +170,20 @@
             
             // Get random integer
             var randNum = genRand();
-            // console.log(randNum);
 
             // Get random box from moles array
             var randBox = moles[randNum - 1];
-            // console.log(randBox);
 
             // Fade in random box
             $(randBox).fadeIn(200);
+
+            $(randBox).click(function() {
+                score += 10;
+                scorebox.html(score);
+                console.log(score);
+                $(this).fadeOut();
+                $(this).off();
+            });
 
             time--;
             timer.html(time);
@@ -176,20 +195,10 @@
         }, 1000);
     }
 
-    function resetGame() {
-        
-        // Stop current game.
-        stopGame();
-
-        // Run a new game
-        runGame();
-    }
-
     function stopGame() {
-
         moles.fadeOut(1000);
         timer.fadeOut(1000);
-        scorebox.fadeOut(1000);
+        // scorebox.fadeOut(1000);
         
         // lils.fadeOut(1000);
         // main.html('<h1 class="center"> GAME OVER </h1>');
@@ -198,19 +207,13 @@
         // Flash Game Over.
     }
 
-
-    // console.log(array);
-
     // Adds event listener to start button
     var start = document.getElementById('start-btn');
     start.addEventListener('click', runGame, false);
 
     // Honestly; not even necessary.
     var reset = document.getElementById('reset-btn');
-    reset.addEventListener('click', resetGame, false);
-
-    // Start An Interval @ 1 second
-    // var game = setInterval(runGame, 1000);
+    reset.addEventListener('click', stopGame, false);
 
 
     // fade in each random box
