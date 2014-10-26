@@ -4,6 +4,11 @@
 <link rel="stylesheet" type="text/css" href="/includes/bootstrap/css/bootstrap.css">
 <style type="text/css">
 
+    body {
+        color: white;
+        background-image: url('/includes/img/bg.png');
+    }
+
     .main-box {
         border: solid black 1px;
         height: 596px;
@@ -18,8 +23,6 @@
         border: solid black 1px;
         height: 198px;
         width: 198px;
-        /*background-image: url('/includes/img/gc_face.png');*/
-        /*display: none;*/
         float: left;
     }
 
@@ -53,6 +56,7 @@
         position: absolute;
         top: 85px;
         right: 50px;
+
         display:none;
     }
 
@@ -63,11 +67,9 @@
        position: absolute;
        top: 85px;
        left: 50px;
-       display:none; 
-    }
 
-    .center {
-        margin: auto;
+       display:none;
+
     }
 
 </style>
@@ -88,41 +90,41 @@
 
         <div class="row no-pad">
             <div id="1" class="lil-box">
-                <img class="mole" src="/includes/img/chris.jpg">
+                <img class="mole img-rounded" src="/includes/img/chris.jpg">
             </div>
             <div id="2" class="lil-box">
-                <img class="mole" src="/includes/img/mike.jpg">
+                <img class="mole img-rounded" src="/includes/img/mike.jpg">
             </div>
             <div id="3" class="lil-box">
-                <img class="mole" src="/includes/img/jason.jpg">
+                <img class="mole img-rounded" src="/includes/img/jason.jpg">
             </div>
         </div> <!-- End Row -->
 
         <div class="row no-pad">
             <div id="4" class="lil-box">
-                <img class="mole" src="/includes/img/thomas.jpg">
+                <img class="mole img-rounded" src="/includes/img/thomas.jpg">
             </div>
             <div id="5" class="lil-box">
-                <img class="mole" src="/includes/img/jenni.jpg">
+                <img class="mole img-rounded" src="/includes/img/jenni.jpg">
             </div>
             <div id="6" class="lil-box">
-                <img class="mole" src="/includes/img/gc_face.png">
+                <img class="mole img-rounded" src="/includes/img/gc_face.png">
             </div>
         </div> <!-- End Row -->
 
         <div class="row no-pad">
             <div id="7" class="lil-box">
-                <img class="mole" src="/includes/img/greg.jpg">
+                <img class="mole img-rounded" src="/includes/img/greg.jpg">
             </div>
             <div id="8" class="lil-box">
-                <img class="mole" src="/includes/img/isaac.jpg">
+                <img class="mole img-rounded" src="/includes/img/isaac.jpg">
             </div>
             <div id="9" class="lil-box">
-                <img class="mole" src="/includes/img/ryan.jpg">
+                <img class="mole img-rounded" src="/includes/img/ryan.jpg">
             </div>
         </div> <!-- End Row -->
 
-    </div> <!-- End Main Container -->
+    </div> <!-- End Main Box -->
 
     <div class="buttons">
         <button id="start-btn" class="btn btn-lg btn-success pull-right"> START </button>
@@ -192,11 +194,6 @@
                 // Fade image out
                 $(this).fadeOut();
             });
-
-            // // Decrement timer
-            // time -= 1;
-            // // Update timer
-            // timer.html(time);
 
             // Stop Game on timer zero
             if (time <= 0) {
