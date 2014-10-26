@@ -56,6 +56,10 @@
         display:none;
     }
 
+    .center {
+        margin: auto;
+    }
+
 </style>
 
 </head>
@@ -69,7 +73,7 @@
         <h2>Whack Away!</h2>
     </div>
 
-    <div class="main-box">
+    <div id="main-box" class="main-box">
 
         <div class="row no-pad">
             <div id="1" class="lil-box">
@@ -120,6 +124,13 @@
 <script type="text/javascript">
 
     var game;
+    var time = 5;
+    var timer = $('#timer');
+
+    var moles = $('.mole');
+    var main = $('#main-box');
+    var lils = $('.lil-box');
+
 
     function genRand() {
         // Generate Random Number b/w 1-9
@@ -130,15 +141,13 @@
         
         clearInterval(game);
 
-        var time = 60;
-        var timer = $('#timer');
         timer.html(time);
         timer.fadeIn();
 
 
         game = setInterval(function () {
             // Fade out all moles
-            $('.mole').fadeOut();
+            moles.fadeOut();
             
             // Get random integer
             var randNum = genRand();
@@ -167,12 +176,20 @@
     }
 
     function stopGame() {
+
+        moles.fadeOut(1000);
+        timer.fadeOut(1000);
+        
+        // lils.fadeOut(1000);
+        // main.html('<h1 class="center"> GAME OVER </h1>');
+
+
+
         clearInterval(game);
         // Flash Game Over.
     }
 
-    // Define array of boxes
-    var moles = $('.mole');
+
     // console.log(array);
 
     // Adds event listener to start button
