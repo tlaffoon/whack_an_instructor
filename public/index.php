@@ -124,8 +124,11 @@
 <script type="text/javascript">
 
     var game;
-    var time = 5;
+    var time = 60;
     var timer = $('#timer');
+
+    var score = 0;
+    var scorebox = $('#scorebox');
 
     var moles = $('.mole');
     var main = $('#main-box');
@@ -141,9 +144,12 @@
         
         clearInterval(game);
 
+        scorebox.html(score);
+        scorebox.fadeIn();
+
+        time = 60;
         timer.html(time);
         timer.fadeIn();
-
 
         game = setInterval(function () {
             // Fade out all moles
@@ -163,7 +169,7 @@
             time--;
             timer.html(time);
 
-            if (time == 0) {
+            if (time <= 0) {
                 stopGame();
             };
 
@@ -171,6 +177,10 @@
     }
 
     function resetGame() {
+        
+        // Stop current game.
+        stopGame();
+
         // Run a new game
         runGame();
     }
@@ -179,11 +189,10 @@
 
         moles.fadeOut(1000);
         timer.fadeOut(1000);
+        scorebox.fadeOut(1000);
         
         // lils.fadeOut(1000);
         // main.html('<h1 class="center"> GAME OVER </h1>');
-
-
 
         clearInterval(game);
         // Flash Game Over.
