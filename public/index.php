@@ -1,13 +1,13 @@
 <html>
 <head>
     <title>Whack A Coder</title>
-<!-- <link rel="stylesheet" type="text/css" href="/includes/bootstrap/css/bootstrap.css"> -->
+<link rel="stylesheet" type="text/css" href="/includes/bootstrap/css/bootstrap.css">
 <style type="text/css">
 
     .main-box {
         border: solid black 1px;
-        height: 600px;
-        width: 600px;
+        height: 596px;
+        width: 596px;
         margin: 50px auto;
     }
 
@@ -26,15 +26,22 @@
         width: 100%;
     }
 
+    .no-pad {
+        padding: 0px;
+        margin: 0px;
+    }
+
 
 </style>
 
 </head>
 <body>
 
+<div class="page-header"></div>
+
 <div class="main-box">
 
-    <div class="row no-padding">
+    <div class="row no-pad">
         <div id="1" class="lil-box">
             <img class="mole" src="/includes/img/gc_face.png">
         </div>
@@ -46,7 +53,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row no-pad">
         <div id="4" class="lil-box">
             <img class="mole" src="/includes/img/gc_face.png">
         </div>
@@ -58,7 +65,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row no-pad">
         <div id="7" class="lil-box">
             <img class="mole" src="/includes/img/gc_face.png">
         </div>
