@@ -37,21 +37,23 @@
 </div>
 
 </body>
+<script src="/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
 
     function genRand() {
+        // Generate Random Number b/w 1-9
         return Math.floor(Math.random() * 9) + 1;
     }
 
     function runGame() {
         var randNum = genRand();
-        console.log(randNum);
+        // console.log(randNum);
+
     }
 
     // Start An Interval @ 1 second
     var game = setInterval(runGame, 1000);
 
-    // Generate Random Number b/w 1-9
 
     // fade in each random box
     // add event listener on faded in box
