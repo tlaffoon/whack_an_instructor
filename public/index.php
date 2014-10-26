@@ -15,6 +15,8 @@
         height: 198px;
         width: 198px;
         float: left;
+        background-image: url('/img/gc_face.png');
+        display: none;
     }
 
 </style>
@@ -36,6 +38,21 @@
 
 </body>
 <script type="text/javascript">
+
+    function genRand() {
+        return Math.floor(Math.random() * 9) + 1;
+    }
+
+    function runGame() {
+        var randNum = genRand();
+        console.log(randNum);
+    }
+
+    // Start An Interval @ 1 second
+    var game = setInterval(runGame, 1000);
+
+    // Generate Random Number b/w 1-9
+
     // fade in each random box
     // add event listener on faded in box
     // when clicked:
