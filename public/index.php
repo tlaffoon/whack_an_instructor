@@ -1,6 +1,24 @@
 <html>
 <head>
     <title>Whack A Coder</title>
+<style type="text/css">
+
+    .main-box {
+        border: solid black 1px;
+        height: 600px;
+        width: 600px;
+        margin: 50px auto;
+    }
+
+    .lil-box {
+        border: dotted black 1px;
+        height: 198px;
+        width: 198px;
+        float: left;
+    }
+
+</style>
+
 </head>
 <body>
 
