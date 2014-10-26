@@ -8,7 +8,10 @@
         border: solid black 1px;
         height: 596px;
         width: 596px;
-        margin: 50px auto;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
     .lil-box {
@@ -24,6 +27,7 @@
         display: none;
         height: 100%;
         width: 100%;
+        cursor: pointer;
     }
 
     .no-pad {
@@ -36,6 +40,11 @@
         width: 600px;
     }
 
+    .buttons {
+        margin: 0px auto;
+        height: 50px;
+        width: 600px;
+    }
 
 </style>
 
@@ -58,7 +67,7 @@
         <div id="3" class="lil-box">
             <img class="mole" src="/includes/img/gc_face.png">
         </div>
-    </div>
+    </div> <!-- End Row -->
 
     <div class="row no-pad">
         <div id="4" class="lil-box">
@@ -70,7 +79,7 @@
         <div id="6" class="lil-box">
             <img class="mole" src="/includes/img/gc_face.png">
         </div>
-    </div>
+    </div> <!-- End Row -->
 
     <div class="row no-pad">
         <div id="7" class="lil-box">
@@ -82,13 +91,20 @@
         <div id="9" class="lil-box">
             <img class="mole" src="/includes/img/gc_face.png">
         </div>
-    </div>
+    </div> <!-- End Row -->
 
+</div> <!-- End Main Container -->
+
+<div class="buttons">
+    <button id="start-btn" class="btn btn-lg btn-success pull-right"> START </button>
+    <button id="reset-btn" class="btn btn-lg btn-warning pull-left"> RESET </button>
 </div>
 
 </body>
 <script src="/includes/js/jquery-2.1.1.min.js"></script>
 <script type="text/javascript">
+
+    var game;
 
     function genRand() {
         // Generate Random Number b/w 1-9
@@ -96,28 +112,39 @@
     }
 
     function runGame() {
-        // Fade out all moles
-        $('.mole').fadeOut();
         
-        // Get random integer
-        var randNum = genRand();
-        // console.log(randNum);
+        clearInterval(game);
 
-        // Get random box from moles array
-        var randBox = moles[randNum - 1];
-        // console.log(randBox);
+        game = setInterval(function () {
+            // Fade out all moles
+            $('.mole').fadeOut();
+            
+            // Get random integer
+            var randNum = genRand();
+            // console.log(randNum);
 
-        // Fade in random box
-        $(randBox).fadeIn(200);
+            // Get random box from moles array
+            var randBox = moles[randNum - 1];
+            // console.log(randBox);
 
+            // Fade in random box
+            $(randBox).fadeIn(200);
+        }, 1000);
     }
+
+    // function stopGame() {
+    //     clearInterval
+    // }
 
     // Define array of boxes
     var moles = $('.mole');
     // console.log(array);
 
+    var start = document.getElementById('start-btn');
+    start.addEventListener('click', runGame, false);
+
     // Start An Interval @ 1 second
-    var game = setInterval(runGame, 1000);
+    // var game = setInterval(runGame, 1000);
 
 
     // fade in each random box
