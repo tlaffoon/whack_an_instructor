@@ -37,12 +37,12 @@
 
     .box-header {
         margin: 0px auto;
-        width: 600px;
+        width: 596px;
     }
 
     .buttons {
         margin: 0px auto;
-        height: 50px;
+        height: 80px;
         width: 600px;
     }
 
@@ -100,13 +100,13 @@
 
         <div class="row no-pad">
             <div id="4" class="lil-box">
-                <img class="mole" src="/includes/img/jenni.jpg">
+                <img class="mole" src="/includes/img/thomas.jpg">
             </div>
             <div id="5" class="lil-box">
-                <img class="mole" src="/includes/img/gc_face.png">
+                <img class="mole" src="/includes/img/jenni.jpg">
             </div>
             <div id="6" class="lil-box">
-                <img class="mole" src="/includes/img/ben.jpg">
+                <img class="mole" src="/includes/img/gc_face.png">
             </div>
         </div> <!-- End Row -->
 
@@ -154,15 +154,16 @@
 
     function runGame() {
         
+        var increment = 1000;
+
         clearInterval(game);
 
         score = 0;
         scorebox.html(score);
         scorebox.fadeIn();
 
-        time = 60;
-        timer.html(time);
-        timer.fadeIn();
+        // Run timer
+        runTimer();
 
         game = setInterval(function () {
             // Fade out all moles
@@ -182,29 +183,46 @@
 
             // Run function on click; add points/fadeOut
             $(randBox).click(function() {
-                score += 10;
-                scorebox.html(score);
-                console.log(score);
-                $(this).fadeOut();
+                // remove event listener
                 $(this).off();
+                // Increment score
+                score += 10;
+                // Update scorebox
+                scorebox.html(score);
+                // Fade image out
+                $(this).fadeOut();
             });
 
-            // Decrement timer and update html
-            time--;
-            timer.html(time);
+            // // Decrement timer
+            // time -= 1;
+            // // Update timer
+            // timer.html(time);
 
             // Stop Game on timer zero
             if (time <= 0) {
                 stopGame();
             };
 
-        }, 1000);
+        }, increment);
     }
 
     function stopGame() {
         clearInterval(game);        
         moles.fadeOut(1000);
+        clearInterval();
         timer.fadeOut(1000);
+    }
+
+    function runTimer() {
+        time = 60;
+        timer.html(time);
+        timer.fadeIn();
+
+        var timerloop = setInterval(function () {
+            time--;
+            timer.html(time);
+
+        }, 1000);
     }
 
     // Adds event listener to start button
@@ -215,13 +233,10 @@
     var stop = document.getElementById('stop-btn');
     stop.addEventListener('click', stopGame, false);
 
-
-    // fade in each random box
-    // add event listener on faded in box
-    // when clicked:
-        // add points
-        // decrease interval between fade ins
-        // make a sound
-        // remove listener on said box when clicked
+    // Features to add:
+        // Increase timer on image click
+        // Sound on image click
+        // Background music
+        // Additional CSS
 </script>
 </html>
